@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Business Locator{% endblock %}
+{% block content %}
+<h1>Business Locator</h1>
+<form method="POST" action="/">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.location.label(class="form-label") }}<br>
+        {{ form.location(class="form-control", size=32) }}
+    </div>
+    <div class="form-group">
+        {{ form.search_by.label(class="form-label") }}<br>
+        {{ form.search_by(class="form-control") }}
+    </div>
+    <div class="form-group" id="radius-field">
+        {{ form.radius.label(class="form-label") }}<br>
+        {{ form.radius(class="form-control") }}
+    </div>
+    <div class="form-group" id="max-drive-time-field">
+        {{ form.max_drive_time.label(class="form-label") }}<br>
+        {{ form.max_drive_time(class="form-control") }}
+    </div>
+    <div class="form-group">
+        Default search terms: <strong>{{ default_search_terms }}</strong>
+    </div>
+    <div class="form-group">
+        {{ form.additional_search_terms.label(class="form-label") }}<br>
+        {{ form.additional_search_terms(class="form-control", size=32) }}
+        <small>{{ form.additional_search_terms.description }}</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchByField = document.getElementById('search_by');
+        const radiusField = document.getElementById('radius-field');
+        const maxDriveTimeField = document.getElementById('max-drive-time-field');
+
+        function toggleFields() {
+            if (searchByField.value === 'd') {
+                radiusField.style.display = 'none';
+                maxDriveTimeField.style.display = 'block';
+            } else if (searchByField.value === 'r') {
+                radiusField.style.display = 'block';
+                maxDriveTimeField.style.display = 'none';
+            } else {
+                radiusField.style.display = 'block';
+                maxDriveTimeField.style.display = 'block';
+            }
+        }
+
+        searchByField.addEventListener('change', toggleFields);
+        toggleFields(); // Initial call to set the correct visibility on page load
+    });
+</script>
+{% endblock %}
