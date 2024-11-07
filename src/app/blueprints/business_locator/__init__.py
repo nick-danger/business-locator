@@ -23,7 +23,7 @@ def index():
         workbook.save(output)
         output.seek(0)
         return send_file(output, download_name="search_results.xlsx", as_attachment=True)
-    return render_template('index.html', form=form, default_search_terms=os.environ['DEFAULT_SEARCH_TERMS'])
+    return render_template('index.html', form=form)
 
 
 def get_location_coordinates(client: Client, address: str) -> Union[Tuple[float, float], Tuple[None, None]]:

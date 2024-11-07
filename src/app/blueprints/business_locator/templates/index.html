@@ -22,9 +22,6 @@
         {{ form.max_drive_time(class="form-control") }}
     </div>
     <div class="form-group">
-        Default search terms: <strong>{{ default_search_terms }}</strong>
-    </div>
-    <div class="form-group">
         {{ form.additional_search_terms.label(class="form-label") }}<br>
         {{ form.additional_search_terms(class="form-control", size=32) }}
         <small>{{ form.additional_search_terms.description }}</small>

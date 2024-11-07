@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5eacbddb-9c80-4f57-937d-eeb6c7e3e5df" name="Changes" comment="converted to a flask app">
-      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+    <list default="true" id="5eacbddb-9c80-4f57-937d-eeb6c7e3e5df" name="Changes" comment="dockerized the app">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/blueprints/business_locator/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/blueprints/business_locator/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/blueprints/business_locator/forms/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/blueprints/business_locator/forms/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/blueprints/business_locator/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/blueprints/business_locator/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +25,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "nick-danger"
+  }
+}]]></component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "git@github.com:nick-danger/business-locator.git",
@@ -149,7 +150,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730869816617</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="dockerized the app">
+      <option name="closed" value="true" />
+      <created>1730946474063</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1730946474063</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -166,6 +175,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
     <MESSAGE value="converted to a flask app" />
-    <option name="LAST_COMMIT_MESSAGE" value="converted to a flask app" />
+    <MESSAGE value="dockerized the app" />
+    <option name="LAST_COMMIT_MESSAGE" value="dockerized the app" />
   </component>
 </project>
