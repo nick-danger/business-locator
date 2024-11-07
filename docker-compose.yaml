@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  flask_app:
+    build:
+      context: https://github.com/nick-danger/business-locator.git
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - API_KEY=${API_KEY}
+      - SECRET_KEY=${SECRET_KEY}

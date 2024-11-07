@@ -96,8 +96,7 @@ def all_searches(client: Client, search_terms: List[str], address: str, radius: 
 
 def generate_xlsx_file(search_command: SearchForm) -> Workbook:
     gmaps = googlemaps.Client(key=os.environ['API_KEY'])
-    search_terms = os.environ['DEFAULT_SEARCH_TERMS'].lower().split(",")
-    search_terms.extend([term for term in search_command.additional_search_terms.data.lower().split(",") if term])
+    search_terms = [term for term in search_command.search_terms.data.lower().split(",") if term]
 
     all_results = all_searches(client=gmaps, search_terms=search_terms, address=search_command.location.data,
                                radius=search_command.radius.data, max_drive_time=search_command.max_drive_time.data)

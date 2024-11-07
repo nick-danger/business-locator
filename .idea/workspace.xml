@@ -4,22 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5eacbddb-9c80-4f57-937d-eeb6c7e3e5df" name="Changes" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/blueprints/business_locator/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/blueprints/business_locator/forms/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/blueprints/business_locator/templates/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/templates/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/business_locator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/wsgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/MBR-geo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MBR-geo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="5eacbddb-9c80-4f57-937d-eeb6c7e3e5df" name="Changes" comment="converted to a flask app">
+      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/blueprints/business_locator/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/blueprints/business_locator/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/blueprints/business_locator/forms/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/blueprints/business_locator/forms/__init__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +30,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:nick-danger/business-locator.git",
+    "accountId": "5a2963b4-a74d-40f2-92ad-cc27bd756afd"
+  }
+}]]></component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 1
 }]]></component>
@@ -50,13 +49,14 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
+    "Docker.Dockerfile.executor": "Run",
     "Python.geo.executor": "Run",
     "Python.wsgi.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main"
   }
 }]]></component>
-  <component name="RunManager" selected="Python.wsgi">
+  <component name="RunManager" selected="Docker.Dockerfile">
     <configuration name="business_locator" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="MBR-geo" />
       <option name="ENV_FILES" value="" />
@@ -101,8 +101,17 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="sourceFilePath" value="Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.Dockerfile" />
         <item itemvalue="Python.wsgi" />
         <item itemvalue="Python.business_locator" />
       </list>
@@ -132,11 +141,31 @@
       <option name="project" value="LOCAL" />
       <updated>1730852328496</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="converted to a flask app">
+      <option name="closed" value="true" />
+      <created>1730869816617</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1730869816617</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="converted to a flask app" />
+    <option name="LAST_COMMIT_MESSAGE" value="converted to a flask app" />
   </component>
 </project>

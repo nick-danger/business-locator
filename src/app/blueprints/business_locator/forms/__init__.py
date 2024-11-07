@@ -7,5 +7,5 @@ class SearchForm(FlaskForm):
     search_by = SelectField('Search by', choices=[('r', 'Radius'), ('d', 'Drive Time'), ('b', 'Both')], validators=[DataRequired()])
     radius = IntegerField('Radius (in miles)', validators=[Optional()])
     max_drive_time = IntegerField('Maximum drive time (in minutes)', validators=[Optional()])
-    additional_search_terms = StringField('Additional search terms', validators=[Optional()], description="Separate multiple search terms with commas")
+    search_terms = StringField('Additional search terms', validators=[Optional()], description="Separate multiple search terms with commas")
     submit = SubmitField('Download')
