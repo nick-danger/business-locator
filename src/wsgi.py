@@ -1,3 +1,6 @@
+"""
+WSGI entry point for the application.
+"""
 from app import create_app
 
 # Create the WSGI application

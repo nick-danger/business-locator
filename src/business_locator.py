@@ -1,3 +1,6 @@
+"""
+This module provides functions to interact with the Google Maps API for geocoding and searching places.
+"""
 import os
 import time
 
@@ -14,9 +17,8 @@ def get_location_coordinates(address):
     if geocode_result:
         location_data = geocode_result[0]['geometry']['location']
         return location_data['lat'], location_data['lng']
-    else:
-        print(f"Could not find coordinates for {address}.")
-        return None, None
+    print(f"Could not find coordinates for {address}.")
+    return None, None
 
 
 def search_places(query, location, radius=None, max_drive_time=None):

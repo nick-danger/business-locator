@@ -1,3 +1,6 @@
+"""
+This module initializes the business locator blueprint and defines its routes and helper functions.
+"""
 import logging
 import os
 from io import BytesIO
@@ -16,6 +19,16 @@ business_locator = Blueprint('business_locator', __name__, template_folder='temp
 
 @business_locator.route('/', methods=['GET', 'POST'])
 def index():
+    """
+    Handle the index route for the business locator blueprint.
+
+    This function renders the search form and processes the form submission.
+    If the form is valid, it generates an Excel file with the search results
+    and sends it as a downloadable file.
+
+    Returns:
+        Response: The rendered template or the generated Excel file.
+    """
     form = SearchForm()
     if form.validate_on_submit():
         workbook = generate_xlsx_file(form)
@@ -27,16 +40,39 @@ def index():
 
 
 def get_location_coordinates(client: Client, address: str) -> Union[Tuple[float, float], Tuple[None, None]]:
+    """
+    Get the coordinates (latitude and longitude) for a given address.
+
+    Args:
+        client (Client): The Google Maps client.
+        address (str): The address to geocode.
+
+    Returns:
+        Union[Tuple[float, float], Tuple[None, None]]: The coordinates of the address or (None, None) if not found.
+    """
     geocode_result = client.geocode(address)
     if geocode_result:
         location_data = geocode_result[0]['geometry']['location']
         return location_data['lat'], location_data['lng']
-    logging.warning(f"Could not find coordinates for {address}.")
+    logging.warning("Could not find coordinates for %s." % (address,))
     return None, None
 
 
 def search_places(client: Client, query: str, location: str, radius: Optional[float] = None,
                   max_drive_time: Optional[float] = None) -> List[Dict[str, Union[str, float]]]:
+    """
+    Search for places based on the query, location, radius, and maximum drive time.
+
+    Args:
+        client (Client): The Google Maps client.
+        query (str): The search query.
+        location (str): The location to search around.
+        radius (Optional[float]): The search radius in miles. Defaults to None.
+        max_drive_time (Optional[float]): The maximum drive time in minutes. Defaults to None.
+
+    Returns:
+        List[Dict[str, Union[str, float]]]: A list of search results with place details.
+    """
     lat, lng = get_location_coordinates(client, location)
     if lat is None or lng is None:
         return []
@@ -48,8 +84,8 @@ def search_places(client: Client, query: str, location: str, radius: Optional[fl
     if max_drive_time:
         destination_addresses = [place['geometry']['location'] for place in places_result]
         drive_times = \
-        client.distance_matrix(origins=[(lat, lng)], destinations=destination_addresses, mode="driving")['rows'][0][
-            'elements']
+            client.distance_matrix(origins=[(lat, lng)], destinations=destination_addresses, mode="driving")['rows'][0][
+                'elements']
 
         for idx, element in enumerate(drive_times):
             if element['status'] == 'OK' and element['duration']['value'] <= max_drive_time * 60:
@@ -70,8 +106,9 @@ def search_places(client: Client, query: str, location: str, radius: Optional[fl
             place_id = place['place_id']
             details = client.place(place_id=place_id)
             distance_matrix_result = \
-            client.distance_matrix(origins=[(lat, lng)], destinations=[place['geometry']['location']], mode="driving")[
-                'rows'][0]['elements'][0]
+                client.distance_matrix(origins=[(lat, lng)], destinations=[place['geometry']['location']],
+                                       mode="driving")[
+                    'rows'][0]['elements'][0]
             results.append({
                 "Name": place.get('name', 'N/A'),
                 "Address": place.get('formatted_address', 'N/A'),
@@ -88,6 +125,19 @@ def search_places(client: Client, query: str, location: str, radius: Optional[fl
 
 def all_searches(client: Client, search_terms: List[str], address: str, radius: int, max_drive_time: int) -> List[
     Dict[str, Union[str, float]]]:
+    """
+    Perform searches for all search terms and aggregate the results.
+
+    Args:
+        client (Client): The Google Maps client.
+        search_terms (List[str]): The list of search terms.
+        address (str): The location to search around.
+        radius (int): The search radius in miles.
+        max_drive_time (int): The maximum drive time in minutes.
+
+    Returns:
+        List[Dict[str, Union[str, float]]]: A list of aggregated search results.
+    """
     all_results = []
     for term in search_terms:
         all_results.extend(search_places(client, term, address, radius=radius, max_drive_time=max_drive_time))
@@ -95,6 +145,15 @@ def all_searches(client: Client, search_terms: List[str], address: str, radius: 
 
 
 def generate_xlsx_file(search_command: SearchForm) -> Workbook:
+    """
+    Generate an Excel file with the search results based on the search form input.
+
+    Args:
+        search_command (SearchForm): The search form containing the search criteria.
+
+    Returns:
+        Workbook: The generated Excel workbook with the search results.
+    """
     gmaps = googlemaps.Client(key=os.environ['API_KEY'])
     search_terms = [term for term in search_command.search_terms.data.lower().split(",") if term]
 
