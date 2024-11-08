@@ -11,3 +11,4 @@ services:
       - API_KEY=${API_KEY}
       - SECRET_KEY=${SECRET_KEY}
       - VIRTUAL_HOST=${VIRTUAL_HOST}
+    network_mode: ${NETWORK_MODE}
