@@ -6,7 +6,8 @@ services:
       context: https://github.com/nick-danger/business-locator.git
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "80:8080"
     environment:
       - API_KEY=${API_KEY}
       - SECRET_KEY=${SECRET_KEY}
+      - VIRTUAL_HOST=${VIRTUAL_HOST}
