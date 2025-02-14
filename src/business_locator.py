@@ -13,10 +13,13 @@ gmaps = googlemaps.Client(key=os.environ['API_KEY'])
 
 
 def get_location_coordinates(address):
-    geocode_result = gmaps.geocode(address)
-    if geocode_result:
-        location_data = geocode_result[0]['geometry']['location']
-        return location_data['lat'], location_data['lng']
+    try:
+        geocode_result = gmaps.geocode(address)
+        if geocode_result:
+            location_data = geocode_result[0]['geometry']['location']
+            return location_data['lat'], location_data['lng']
+    except googlemaps.exceptions.ApiError as e:
+        print(f"An error occurred invoking the geocode API: {e}")
     print(f"Could not find coordinates for {address}.")
     return None, None
 
