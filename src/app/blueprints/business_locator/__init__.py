@@ -50,10 +50,13 @@ def get_location_coordinates(client: Client, address: str) -> Union[Tuple[float,
     Returns:
         Union[Tuple[float, float], Tuple[None, None]]: The coordinates of the address or (None, None) if not found.
     """
-    geocode_result = client.geocode(address)
-    if geocode_result:
-        location_data = geocode_result[0]['geometry']['location']
-        return location_data['lat'], location_data['lng']
+    try:
+        geocode_result = client.geocode(address)
+        if geocode_result:
+            location_data = geocode_result[0]['geometry']['location']
+            return location_data['lat'], location_data['lng']
+    except googlemaps.exceptions.ApiError as e:
+        logging.error(f"An error occurred invoking the geocode API: {e}")
     logging.warning("Could not find coordinates for %s." % (address,))
     return None, None
 
