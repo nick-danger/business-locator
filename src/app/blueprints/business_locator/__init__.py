@@ -177,7 +177,7 @@ def generate_xlsx_file(search_command: SearchForm) -> Workbook:
         else:
             filtered_results[result_key(result)] = result
 
-    for result in filtered_results:
-        ws.append([result["Name"], result["Address"], result["Phone"], result["Website"], result["Google Maps URL"],
-                   result["Drive Time (min)"], result["Distance (miles)"], result["Search Term"]])
+    for key in  filtered_results:
+        ws.append([filtered_results[key]["Name"], filtered_results[key]["Address"], filtered_results[key]["Phone"], filtered_results[key]["Website"], filtered_results[key]["Google Maps URL"],
+                   filtered_results[key]["Drive Time (min)"], filtered_results[key]["Distance (miles)"], filtered_results[key]["Search Term"]])
     return wb
