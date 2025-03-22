@@ -154,6 +154,7 @@ def generate_xlsx_file(search_command: SearchForm) -> Workbook:
     Returns:
         Workbook: The generated Excel workbook with the search results.
     """
+
     gmaps = googlemaps.Client(key=os.environ['API_KEY'])
     search_terms = [term for term in search_command.search_terms.data.lower().split(",") if term]
 
@@ -164,7 +165,16 @@ def generate_xlsx_file(search_command: SearchForm) -> Workbook:
     ws = wb.active
     ws.append(["Name", "Address", "Phone", "Website", "Google Maps URL", "Drive Time (min)", "Distance (miles)",
                "Search Term"])
+
+    result_key = lambda x: "/".join([x["Name"], x["Address"], x["Phone"], x["Website"]])
+    filtered_results: dict = dict()
     for result in all_results:
+        if result_key(result) in filtered_results:
+            filtered_results[result_key(result)]["Search Term"] += f", {result['Search Term']}"
+        else:
+            filtered_results[result_key(result)] = result
+
+    for result in filtered_results:
         ws.append([result["Name"], result["Address"], result["Phone"], result["Website"], result["Google Maps URL"],
                    result["Drive Time (min)"], result["Distance (miles)"], result["Search Term"]])
     return wb
